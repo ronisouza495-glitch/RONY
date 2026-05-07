@@ -12,6 +12,10 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!auth) {
+      setLoading(false);
+      return;
+    }
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setLoading(false);
@@ -23,6 +27,15 @@ export default function App() {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
+  if (!auth) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-center p-4">
+        <h1 className="text-2xl font-bold text-red-500 mb-2">Erro de Configuração</h1>
+        <p className="text-slate-400">Firebase não pôde ser inicializado. Verifique se o arquivo de configuração existe.</p>
       </div>
     );
   }

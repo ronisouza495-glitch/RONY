@@ -17,6 +17,10 @@ export default function Home() {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
 
   useEffect(() => {
+    if (!db) {
+      setLoading(false);
+      return;
+    }
     const q = query(collection(db, 'games'), orderBy('createdAt', 'desc'));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const gamesData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Game));
