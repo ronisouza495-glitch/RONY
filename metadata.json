@@ -1,0 +1,6 @@
+{
+  "name": "Central de Jogos",
+  "description": "Uma plataforma profissional PWA para descobrir e gerenciar links oficiais de jogos, com painel administrativo e busca por categorias.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

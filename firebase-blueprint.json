@@ -1,0 +1,45 @@
+{
+  "entities": {
+    "Game": {
+      "title": "Game",
+      "description": "Represents a game in the central hub.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "The name of the game." },
+        "category": { "type": "string", "description": "The category of the game." },
+        "imageUrl": { "type": "string", "format": "uri", "description": "URL to the game cover image." },
+        "description": { "type": "string", "description": "A brief description of the game." },
+        "officialLink": { "type": "string", "format": "uri", "description": "Link to the App Store or official site." },
+        "ipaUrl": { "type": "string", "format": "uri", "description": "Link to the IPA file for manual installation." },
+        "manifestUrl": { "type": "string", "format": "uri", "description": "Link to the manifest.plist for direct iOS installation." },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "createdBy": { "type": "string" }
+      },
+      "required": ["name", "category", "imageUrl", "description", "officialLink"]
+    },
+    "Log": {
+      "title": "Log",
+      "description": "History of changes made to games.",
+      "type": "object",
+      "properties": {
+        "gameId": { "type": "string" },
+        "gameName": { "type": "string" },
+        "action": { "type": "string", "enum": ["added", "updated", "deleted"] },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "userEmail": { "type": "string" }
+      },
+      "required": ["gameId", "action", "timestamp", "userEmail"]
+    }
+  },
+  "firestore": {
+    "games": {
+      "schema": "Game",
+      "description": "Collection of all games."
+    },
+    "logs": {
+      "schema": "Log",
+      "description": "History of changes."
+    }
+  }
+}
